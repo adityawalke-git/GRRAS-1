@@ -15,16 +15,12 @@ pipeline {
 		stage('Deployment'){
 		   steps {
 		   script {
-		   sh '''if ( env.ENVIRONMENT == \'QA\' );then{
-		   sh \'cp target/GRRAS-1.war /home/aditya/Documents/apache-tomcat-9.0.88/webapps\'
-		   echo "deployment has been done on QA!"
-		   }
-		   elif ( env.ENVIRONMENT == \'UAT\' );then{
-		   sh \'cp target/GRRAS-1.war /home/aditya/Documents/apache-tomcat-9.0.88/webapps\'
-		 echo "deployment has been done on QA!"
-		 }
-		 echo "deployment has been done!"
-			fi'''
+			sh '''if [ $ENVIRONMENT = "QA" ];then
+         cp target/GRRAS-1.war /home/aditya/Documents/apache-tomcat-9.0.88/webapps     
+elif  [ $ENVIRONMENT = "UAT" ];then
+         cp target/GRRAS-1.war /home/aditya/Documents/apache-tomcat-9.0.88/webapps
+echo "deployment has been done!"
+fi'''
 			}}}  
 			
 }}
